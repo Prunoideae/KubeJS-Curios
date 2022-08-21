@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.Item;
+import top.theillusivec4.curios.api.SlotTypePreset;
 
 import java.util.UUID;
 import java.util.function.BiConsumer;
@@ -25,6 +26,12 @@ public class CuriosItemBuilder extends ItemBuilder {
     public CuriosItemBuilder slot(String slot) {
         isSlotSet = true;
         this.tag(new ResourceLocation("curios", slot));
+        return this;
+    }
+
+    //Adds something for Probe
+    public CuriosItemBuilder presetSlot(SlotTypePreset preset) {
+        this.slot(preset.getIdentifier());
         return this;
     }
 
