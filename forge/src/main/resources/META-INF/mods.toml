@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[40,)"
+#issueTrackerURL = ""
+license = "LGPLv3"
+
+[[mods]]
+modId = "kubejs_curios"
+version = "${version}"
+displayName = "KubeJS Curios"
+authors = "Prunoideae"
+description = '''
+Adds Curios support for KubeJS
+'''
+logoFile = "icon.png"
+
+[[dependencies.kubejs_curios]]
+modId = "forge"
+mandatory = true
+versionRange = "[40,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.kubejs_curios]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.18.2,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.kubejs_curios]]
+modId = "architectury"
+mandatory = true
+versionRange = "[4.9.83,)"
+ordering = "AFTER"
+side = "BOTH"

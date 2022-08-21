@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "kubejs_curios",
+  "version": "${version}",
+  "name": "KubeJS Curios",
+  "description": "Adds Curios support for KubeJS",
+  "authors": [
+    "Prunoideae"
+  ],
+  "contact": {
+
+  },
+  "license": "LGPLv3",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.prunoideae.curios.fabric.KubeJSCuriosFabric"
+    ]
+  },
+  "mixins": [
+    "kubejs-curios.mixins.json",
+    "kubejs-curios-common.mixins.json"
+  ],
+  "depends": {
+    "fabric": "*",
+    "minecraft": ">=1.18.2",
+    "architectury": ">=4.9.83"
+  }
+}
