@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import dev.latvian.mods.kubejs.entity.LivingEntityJS;
 import dev.latvian.mods.kubejs.item.ItemStackJS;
+import dev.latvian.mods.kubejs.util.UtilsJS;
 import dev.latvian.mods.rhino.util.HideFromJS;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -36,24 +37,28 @@ public class CuriosItemBehaviour {
         this.attributeApplyModifier = attributeApplyModifier;
     }
 
+    private static LivingEntityJS getEntityJS(LivingEntity entity) {
+        return (LivingEntityJS) UtilsJS.getLevel(entity.level).getEntity(entity);
+    }
+
     public void onWornTick(ItemStack stack, LivingEntity entity) {
-        if (onWornTick != null) onWornTick.accept(ItemStackJS.of(stack), new LivingEntityJS(entity));
+        if (onWornTick != null) onWornTick.accept(ItemStackJS.of(stack), getEntityJS(entity));
     }
 
     public void onEquipped(ItemStack stack, LivingEntity entity) {
-        if (onEquipped != null) onEquipped.accept(ItemStackJS.of(stack), new LivingEntityJS(entity));
+        if (onEquipped != null) onEquipped.accept(ItemStackJS.of(stack), getEntityJS(entity));
     }
 
     public void onUnequipped(ItemStack stack, LivingEntity entity) {
-        if (onUnequipped != null) onUnequipped.accept(ItemStackJS.of(stack), new LivingEntityJS(entity));
+        if (onUnequipped != null) onUnequipped.accept(ItemStackJS.of(stack), getEntityJS(entity));
     }
 
     public boolean canEquip(ItemStack stack, LivingEntity entity) {
-        return canEquip == null || canEquip.test(ItemStackJS.of(stack), new LivingEntityJS(entity));
+        return canEquip == null || canEquip.test(ItemStackJS.of(stack), getEntityJS(entity));
     }
 
     public Multimap<Attribute, AttributeModifier> getEquippedAttributeModifiers(ItemStack stack, LivingEntity entity) {
-        return (attributeApplyModifier == null || attributeApplyModifier.test(ItemStackJS.of(stack), new LivingEntityJS(entity))) ? attributeModifiers : EMPTY;
+        return (attributeApplyModifier == null || attributeApplyModifier.test(ItemStackJS.of(stack), getEntityJS(entity))) ? attributeModifiers : EMPTY;
     }
 
     public static class Builder {
