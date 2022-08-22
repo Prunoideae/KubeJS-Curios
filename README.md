@@ -26,7 +26,8 @@ onEvent("item.registry", event => {
                 
                 poseStack,          //The "space" for trinket to render
                 bipedModel,         //The model of the entity
-                buffers,            //Storing all sorts of thing, mainly that's how you load texture
+                buffers,            //Where you tell GPU to do all sorts of thing, 
+                                    //like stitching texture to a model or something else.
                
                 ageInTicks,         //How many ticks have passed
                 light,              //The surrounding light level for rendering
@@ -52,8 +53,9 @@ onEvent("item.registry", event => {
             let { 
                 poseStack,          //The "space" for trinket to render
                 bipedModel,         //The model of the entity
-                buffers,            //Storing all sorts of thing, mainly that's how you load texture
-
+                buffers,            //Where you tell GPU to do all sorts of thing, 
+                                    //like stitching texture to a model or something else.
+                                    
                 light,              //The surrounding light level for rendering
             } = context;
         })
@@ -106,8 +108,9 @@ onEvent("item.registry", event => {
             let {
                 poseStack, //The "space" for trinket to render
                 bipedModel, //The model of the entity
-                buffers, //Storing all sorts of thing, mainly that's how you load texture
-
+                buffers,            //Where you tell GPU to do all sorts of thing, 
+                                    //like stitching texture to a model or something else.
+                                    
                 light, //The surrounding light level for rendering
             } = context;
 
@@ -144,8 +147,9 @@ onEvent("item.registry", event => {
             let {
                 poseStack, //The "space" for trinket to render
                 bipedModel, //The model of the entity
-                buffers, //Storing all sorts of thing, mainly that's how you load texture
-
+                buffers,            //Where you tell GPU to do all sorts of thing, 
+                                    //like stitching texture to a model or something else.
+                                    
                 light, //The surrounding light level for rendering
             } = context;
 
@@ -195,8 +199,9 @@ onEvent("item.registry", event => {
             let {
                 poseStack, //The "space" for trinket to render
                 bipedModel, //The model of the entity
-                buffers, //Storing all sorts of thing, mainly that's how you load texture
-
+                buffers,            //Where you tell GPU to do all sorts of thing, 
+                                    //like stitching texture to a model or something else.
+                                    
                 light, //The surrounding light level for rendering
             } = context;
 
