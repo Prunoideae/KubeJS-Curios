@@ -26,8 +26,7 @@ onEvent("item.registry", event => {
                 
                 poseStack,          //The "space" for trinket to render
                 bipedModel,         //The model of the entity
-                buffers,            //Where you tell GPU to do all sorts of thing, 
-                                    //like stitching texture to a model or something else.
+                buffers,            //Where you tell GPU to do all sorts of thing.
                
                 ageInTicks,         //How many ticks have passed
                 light,              //The surrounding light level for rendering
@@ -51,12 +50,11 @@ onEvent("item.registry", event => {
     event.create("void_sash", "curios:trinket")
         .render(context => {
             let { 
-                poseStack,          //The "space" for trinket to render
-                bipedModel,         //The model of the entity
-                buffers,            //Where you tell GPU to do all sorts of thing, 
-                                    //like stitching texture to a model or something else.
+                poseStack,  //The "space" for trinket to render
+                bipedModel, //The model of the entity
+                buffers,    //Where you tell GPU to do all sorts of thing.
                                     
-                light,              //The surrounding light level for rendering
+                light,      //The surrounding light level for rendering
             } = context;
         })
 })
@@ -106,12 +104,11 @@ onEvent("item.registry", event => {
     event.create("void_sash", "curios:trinket")
         .render(context => {
             let {
-                poseStack, //The "space" for trinket to render
+                poseStack,  //The "space" for trinket to render
                 bipedModel, //The model of the entity
-                buffers,            //Where you tell GPU to do all sorts of thing, 
-                                    //like stitching texture to a model or something else.
+                buffers,    //Where you tell GPU to do all sorts of thing.
                                     
-                light, //The surrounding light level for rendering
+                light,      //The surrounding light level for rendering
             } = context;
 
             poseStack.scale(1.15, 1.15, 1.15)
@@ -145,12 +142,11 @@ onEvent("item.registry", event => {
     event.create("void_sash", "curios:trinket")
         .render(context => {
             let {
-                poseStack, //The "space" for trinket to render
+                poseStack,  //The "space" for trinket to render
                 bipedModel, //The model of the entity
-                buffers,            //Where you tell GPU to do all sorts of thing, 
-                                    //like stitching texture to a model or something else.
+                buffers,    //Where you tell GPU to do all sorts of thing.
                                     
-                light, //The surrounding light level for rendering
+                light,      //The surrounding light level for rendering
             } = context;
 
             poseStack.scale(1.15, 1.15, 1.15)
@@ -197,12 +193,11 @@ onEvent("item.registry", event => {
     event.create("void_sash", "curios:trinket")
         .render(context => {
             let {
-                poseStack, //The "space" for trinket to render
+                poseStack,  //The "space" for trinket to render
                 bipedModel, //The model of the entity
-                buffers,            //Where you tell GPU to do all sorts of thing, 
-                                    //like stitching texture to a model or something else.
+                buffers,    //Where you tell GPU to do all sorts of thing.
                                     
-                light, //The surrounding light level for rendering
+                light,      //The surrounding light level for rendering
             } = context;
 
             poseStack.scale(1.15, 1.15, 1.15)
