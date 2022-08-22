@@ -33,3 +33,13 @@ mandatory = true
 versionRange = "[4.9.83,)"
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependencies.kubejs_curios]]
+modId = "curios"
+mandatory = true
+versionRange = "[1.18-5.0.2.4,)"
+
+[[dependencies.kubejs_curios]]
+modId = "kubejs"
+mandatory = true
+versionRange = "[1802.5.1-build.353,)"

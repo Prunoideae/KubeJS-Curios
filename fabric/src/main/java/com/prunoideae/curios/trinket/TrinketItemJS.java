@@ -43,4 +43,6 @@ public class TrinketItemJS extends TrinketItem {
     public Multimap<Attribute, AttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, UUID uuid) {
         return this.behaviour.getEquippedAttributeModifiers(stack, entity);
     }
+
+
 }

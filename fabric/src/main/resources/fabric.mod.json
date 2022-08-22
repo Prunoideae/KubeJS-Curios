@@ -8,7 +8,6 @@
     "Prunoideae"
   ],
   "contact": {
-
   },
   "license": "LGPLv3",
   "icon": "icon.png",
@@ -16,6 +15,9 @@
   "entrypoints": {
     "main": [
       "com.prunoideae.curios.fabric.KubeJSCuriosFabric"
+    ],
+    "client": [
+      "com.prunoideae.curios.fabric.KubeJSCuriosFabricClient"
     ]
   },
   "mixins": [
@@ -25,6 +27,8 @@
   "depends": {
     "fabric": "*",
     "minecraft": ">=1.18.2",
-    "architectury": ">=4.9.83"
+    "architectury": ">=4.9.83",
+    "kubejs": ">=1802.5.1-build.353",
+    "trinket": "*"
   }
 }
