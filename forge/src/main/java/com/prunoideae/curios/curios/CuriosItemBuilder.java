@@ -36,6 +36,7 @@ public class CuriosItemBuilder extends ItemBuilder {
 
     public CuriosItemBuilder slot(String slot) {
         isSlotSet = true;
+        this.maxStackSize = 1;
         this.tag(new ResourceLocation("curios", slot));
         return this;
     }
@@ -85,7 +86,7 @@ public class CuriosItemBuilder extends ItemBuilder {
 
     public Item createObject() {
         if (!isSlotSet)
-            this.tag(new ResourceLocation("curios", "curios"));
+            this.tag(new ResourceLocation("curios", "curio"));
         Item itemCreated = new CuriosItemJS(createItemProperties());
         KubeJSCuriosForge.behaviours.put(itemCreated, behaviourBuilder.create());
         if (this.itemRenderer != null)
