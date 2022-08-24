@@ -1,11 +1,11 @@
 package com.prunoideae.curios.forge;
 
 import com.google.common.collect.Multimap;
-import com.prunoideae.curios.CuriosItemBehaviour;
-import com.prunoideae.curios.CuriosItemRenderer;
+import com.prunoideae.curios.behaviour.CuriosItemBehaviour;
 import dev.architectury.platform.forge.EventBuses;
 import com.prunoideae.curios.KubeJSCurios;
 import net.minecraft.core.Direction;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.Item;
@@ -70,6 +70,27 @@ public class KubeJSCuriosForge {
             @Override
             public boolean canEquip(SlotContext slotContext) {
                 return behaviour.canEquip(stack, slotContext.entity());
+            }
+
+            @Override
+            public boolean canUnequip(SlotContext slotContext) {
+                return behaviour.canUnequip(stack, slotContext.entity());
+            }
+
+            @NotNull
+            @Override
+            public DropRule getDropRule(SlotContext slotContext, DamageSource source, int lootingLevel, boolean recentlyHit) {
+                return switch (behaviour.canDrop(stack, slotContext.entity())) {
+                    case DESTROY -> DropRule.DESTROY;
+                    case DROP -> DropRule.ALWAYS_DROP;
+                    case KEEP -> DropRule.ALWAYS_KEEP;
+                    case DEFAULT -> DropRule.DEFAULT;
+                };
+            }
+
+            @Override
+            public boolean canEquipFromUse(SlotContext slotContext) {
+                return true;
             }
 
             @Override

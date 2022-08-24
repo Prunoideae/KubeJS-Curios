@@ -2,7 +2,6 @@ package com.prunoideae.curios.fabric;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.prunoideae.curios.CuriosItemRenderer;
-import com.prunoideae.curios.trinket.TrinketItemBuilder;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.client.TrinketRendererRegistry;
 import net.fabricmc.api.ClientModInitializer;
@@ -13,12 +12,15 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class KubeJSCuriosFabricClient implements ClientModInitializer {
+    public static final Map<Item, CuriosItemRenderer> ITEM_RENDERERS = new HashMap<>();
+
     @Override
     public void onInitializeClient() {
-        for (Map.Entry<Item, CuriosItemRenderer> entry : TrinketItemBuilder.ITEM_RENDERERS.entrySet()) {
+        for (Map.Entry<Item, CuriosItemRenderer> entry : ITEM_RENDERERS.entrySet()) {
             Item key = entry.getKey();
             CuriosItemRenderer renderer = entry.getValue();
             TrinketRendererRegistry.registerRenderer(key,

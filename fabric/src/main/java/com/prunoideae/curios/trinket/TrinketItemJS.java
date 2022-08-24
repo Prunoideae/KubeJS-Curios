@@ -1,8 +1,10 @@
 package com.prunoideae.curios.trinket;
 
 import com.google.common.collect.Multimap;
-import com.prunoideae.curios.CuriosItemBehaviour;
+import com.prunoideae.curios.behaviour.CuriosItemBehaviour;
+import com.prunoideae.curios.behaviour.DropRuleJS;
 import dev.emi.trinkets.api.SlotReference;
+import dev.emi.trinkets.api.TrinketEnums;
 import dev.emi.trinkets.api.TrinketItem;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -37,6 +39,22 @@ public class TrinketItemJS extends TrinketItem {
     @Override
     public boolean canEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
         return this.behaviour.canEquip(stack, entity);
+    }
+
+    @Override
+    public boolean canUnequip(ItemStack stack, SlotReference slot, LivingEntity entity) {
+        return this.behaviour.canUnequip(stack, entity);
+    }
+
+    @Override
+    public TrinketEnums.DropRule getDropRule(ItemStack stack, SlotReference slot, LivingEntity entity) {
+        DropRuleJS dropRuleJS = behaviour.canDrop(stack, entity);
+        return switch (dropRuleJS) {
+            case DROP -> TrinketEnums.DropRule.DROP;
+            case KEEP -> TrinketEnums.DropRule.KEEP;
+            case DESTROY -> TrinketEnums.DropRule.DESTROY;
+            case DEFAULT -> TrinketEnums.DropRule.DEFAULT;
+        };
     }
 
     @Override
