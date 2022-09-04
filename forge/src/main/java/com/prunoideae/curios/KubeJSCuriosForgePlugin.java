@@ -1,19 +1,19 @@
 package com.prunoideae.curios;
 
 import com.prunoideae.curios.curios.CuriosItemBuilder;
+import com.prunoideae.curios.forge.KubeJSCuriosForge;
 import dev.latvian.mods.kubejs.KubeJSPlugin;
 import dev.latvian.mods.kubejs.RegistryObjectBuilderTypes;
 import dev.latvian.mods.kubejs.script.BindingsEvent;
 import dev.latvian.mods.kubejs.script.ScriptType;
 import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.client.ICurioRenderer;
 
 public class KubeJSCuriosForgePlugin extends KubeJSPlugin {
 
     @Override
     public void addBindings(BindingsEvent event) {
         event.add("Curios", CuriosApi.class);
-        event.add("CuriosRenderer", ICurioRenderer.class);
+        KubeJSCuriosForge.PROXY.clientBindings(event);
     }
 
     @Override

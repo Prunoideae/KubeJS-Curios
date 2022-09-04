@@ -1,8 +1,8 @@
 package com.prunoideae.curios;
 
+import com.prunoideae.curios.fabric.KubeJSCuriosFabric;
 import com.prunoideae.curios.trinket.TrinketItemBuilder;
 import dev.emi.trinkets.api.TrinketsApi;
-import dev.emi.trinkets.api.client.TrinketRenderer;
 import dev.latvian.mods.kubejs.KubeJSPlugin;
 import dev.latvian.mods.kubejs.RegistryObjectBuilderTypes;
 import dev.latvian.mods.kubejs.script.BindingsEvent;
@@ -13,7 +13,7 @@ public class KubeJSCuriosFabricPlugin extends KubeJSPlugin {
     @Override
     public void addBindings(BindingsEvent event) {
         event.add("Trinket", TrinketsApi.class);
-        event.add("TrinketRenderer", TrinketRenderer.class);
+        KubeJSCuriosFabric.PROXY.clientBindings(event);
     }
 
     @Override

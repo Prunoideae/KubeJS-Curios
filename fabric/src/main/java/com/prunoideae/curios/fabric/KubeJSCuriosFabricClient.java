@@ -3,7 +3,9 @@ package com.prunoideae.curios.fabric;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.prunoideae.curios.CuriosItemRenderer;
 import dev.emi.trinkets.api.SlotReference;
+import dev.emi.trinkets.api.client.TrinketRenderer;
 import dev.emi.trinkets.api.client.TrinketRendererRegistry;
+import dev.latvian.mods.kubejs.script.BindingsEvent;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HumanoidModel;
@@ -14,15 +16,16 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
-public class KubeJSCuriosFabricClient implements ClientModInitializer {
-    public static final Map<Item, CuriosItemRenderer> ITEM_RENDERERS = new HashMap<>();
+public class KubeJSCuriosFabricClient extends KubeJSCuriosFabricCommon implements ClientModInitializer {
+    public static final Map<Supplier<Item>, Supplier<CuriosItemRenderer>> ITEM_RENDERERS = new HashMap<>();
 
     @Override
     public void onInitializeClient() {
-        for (Map.Entry<Item, CuriosItemRenderer> entry : ITEM_RENDERERS.entrySet()) {
-            Item key = entry.getKey();
-            CuriosItemRenderer renderer = entry.getValue();
+        for (Map.Entry<Supplier<Item>, Supplier<CuriosItemRenderer>> entry : ITEM_RENDERERS.entrySet()) {
+            Item key = entry.getKey().get();
+            CuriosItemRenderer renderer = entry.getValue().get();
             TrinketRendererRegistry.registerRenderer(key,
                     (ItemStack stack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel,
                      PoseStack matrices, MultiBufferSource vertexConsumers, int light, LivingEntity livingEntity,
@@ -35,5 +38,10 @@ public class KubeJSCuriosFabricClient implements ClientModInitializer {
                             )
                     ));
         }
+    }
+
+    @Override
+    public void clientBindings(BindingsEvent event) {
+        event.add("TrinketRenderer", TrinketRenderer.class);
     }
 }

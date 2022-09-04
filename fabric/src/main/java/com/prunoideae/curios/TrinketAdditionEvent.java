@@ -11,6 +11,8 @@ import dev.emi.trinkets.api.TrinketEnums;
 import dev.emi.trinkets.api.TrinketsApi;
 import dev.emi.trinkets.api.client.TrinketRendererRegistry;
 import dev.latvian.mods.kubejs.event.EventJS;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -74,6 +76,8 @@ public class TrinketAdditionEvent extends EventJS {
         });
     }
 
+
+    @Environment(EnvType.CLIENT)
     public void attachRenderer(Item item, CuriosItemRenderer renderer) {
         TrinketRendererRegistry.registerRenderer(item,
                 (ItemStack stack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel,

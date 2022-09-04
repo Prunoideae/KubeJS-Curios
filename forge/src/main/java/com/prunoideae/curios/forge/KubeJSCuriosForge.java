@@ -4,6 +4,7 @@ import com.google.common.collect.Multimap;
 import com.prunoideae.curios.behaviour.CuriosItemBehaviour;
 import dev.architectury.platform.forge.EventBuses;
 import com.prunoideae.curios.KubeJSCurios;
+import dev.architectury.utils.EnvExecutor;
 import net.minecraft.core.Direction;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -31,26 +32,27 @@ import top.theillusivec4.curios.api.type.capability.ICurio;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 @Mod(KubeJSCurios.MOD_ID)
 public class KubeJSCuriosForge {
     public static Map<Item, CuriosItemBehaviour> behaviours = new HashMap<>();
-    public static Map<Item, ICurioRenderer> renderers = new HashMap<>();
+    public static KubeJSCuriosForgeCommon PROXY;
 
     public KubeJSCuriosForge() {
         EventBuses.registerModEventBus(KubeJSCurios.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
-
         final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         MinecraftForge.EVENT_BUS.register(this);
         KubeJSCurios.init();
+        PROXY = EnvExecutor.getEnvSpecific(() -> KubeJSCuriosForgeClient::new, () -> KubeJSCuriosForgeCommon::new);
         eventBus.addListener(this::clientSetup);
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
-        for (Map.Entry<Item, ICurioRenderer> entry : renderers.entrySet()) {
-            Item item = entry.getKey();
-            ICurioRenderer renderer = entry.getValue();
-            CuriosRendererRegistry.register(item, () -> renderer);
+        for (Map.Entry<Supplier<Item>, Supplier<ICurioRenderer>> entry : KubeJSCuriosForgeClient.renderers.entrySet()) {
+            Item item = entry.getKey().get();
+            Supplier<ICurioRenderer> renderer = entry.getValue();
+            CuriosRendererRegistry.register(item, renderer);
         }
     }
 
