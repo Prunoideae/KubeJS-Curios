@@ -44,6 +44,8 @@ public class CuriosItemBehaviour {
     }
 
     private static LivingEntityJS getEntityJS(LivingEntity entity) {
+        if (entity == null)
+            return null;
         return (LivingEntityJS) UtilsJS.getLevel(entity.level).getEntity(entity);
     }
 
