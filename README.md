@@ -123,14 +123,13 @@ to stitch textures to them! So we can do like to get texture into the buffer:
 
 ```js
 const beltTexture = new ResourceLocation("kubejs:textures/model/void_sash.png")
-let buffer = buffers.m_6299_(bipedModel.renderType(beltTexture))
+let buffer = buffers.getType(bipedModel.renderType(beltTexture))
 ```
 
 This line feeds the texture location to the model we're rendering to get the `RenderType`, and then pass it to
-the `buffers.m_6299_` to get the loaded model texture.
+the `buffers.getType` to get the loaded model texture.
 
-The method name should be `getType`, but it is obfuscated and not remappable by Rhino, so we will have to use the
-obfuscated name directly. You can check out the `void_sash.png` at [here](examples/void_sash.png). Note the similarity
+You can check out the `void_sash.png` at [here](examples/void_sash.png). Note the similarity
 between it and other armor model textures, since we're rendering it on a player model, their textures would be similar.
 
 Our code looks like this now:
@@ -150,7 +149,7 @@ onEvent("item.registry", event => {
             } = context;
 
             poseStack.scale(1.15, 1.15, 1.15)
-            let buffer = buffers.m_6299_(bipedModel.renderType(beltTexture))
+            let buffer = buffers.getType(bipedModel.renderType(beltTexture))
         })
 })
 ```
@@ -201,7 +200,7 @@ onEvent("item.registry", event => {
             } = context;
 
             poseStack.scale(1.15, 1.15, 1.15)
-            let buffer = buffers.m_6299_(bipedModel.renderType(beltTexture))
+            let buffer = buffers.getType(bipedModel.renderType(beltTexture))
             bipedModel.body.render(poseStack, buffer, light, NO_OVERLAY, 1, 1, 1, 1)
         })
 })
